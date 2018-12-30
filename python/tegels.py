@@ -3,6 +3,7 @@ Created on Dec 29, 2018
 
 @author: boris
 '''
+import random
 
 
 class Tegel:
@@ -46,6 +47,12 @@ class Tegel:
         return Tegel(new_opdruk)
 
 
+def horcat(tegs):
+        splitlist = [t.blockstr().split('\n') for t in tegs]
+        transposelist = list(map(list, zip(*splitlist)))
+        return '\n'.join(map(''.join, transposelist))
+
+
 def standaardSet():
     lijst = ('muffin soesje softijs ijsschaal',
              'muffin taart softijs ijsschaal',
@@ -53,12 +60,18 @@ def standaardSet():
     return [Tegel(t.split()) for t in lijst]
 
 
-def set4():
+def set4(shuffle=False, seed=None):
     lijst = ('muffin taart softijs ijsschaal',
              'softijs ijsschaal muffin taart',
              'softijs ijsschaal muffin soesje',
              'muffin softijs rode_coupe ijsschaal')
-    return [Tegel(t.split()) for t in lijst]
+    tegels = [Tegel(t.split()) for t in lijst]
+    if shuffle and (seed is not None):
+        random.seed(seed)
+    if shuffle:
+        random.shuffle(tegels)
+        tegels = [t.rotate(random.randint(0, 3)) for t in tegels]
+    return tegels
 
 
 if __name__ == '__main__':

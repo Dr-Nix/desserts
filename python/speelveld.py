@@ -32,18 +32,13 @@ class Speelveld:
         s = []
 #        activerows = (len(self.tegels) - 1) / self.cols + 1
         for row in range(self.cols):
-            s.append(self.horcat(self.tegels[row * self.cols : (row + 1) * self.cols]))
+            s.append(tegels.horcat(self.tegels[row * self.cols : (row + 1) * self.cols]))
         return '\n'.join(s)
-
-    def horcat(self, tegs):
-        splitlist = [t.blockstr().split('\n') for t in tegs]
-        transposelist = list(map(list, zip(*splitlist)))
-        return '\n'.join(map(''.join, transposelist))
 
 
 if __name__ == '__main__':
     import tegels
     veld = Speelveld(2, 2)
-    for T in tegels.set4():
+    for T in tegels.set4(shuffle=True, seed=1):
         veld.add_tegel(T)
     print(veld)
