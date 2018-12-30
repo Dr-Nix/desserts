@@ -25,6 +25,15 @@ class Tegel:
     def __repr__(self):
         return 'Tegel' + str(self.opdruk)
 
+    def blockstr(self):
+        return ("*---*\n"
+                "| {} |\n"
+                "|{} {}|\n"
+                "| {} |\n"
+                "*---*").format(self.opdruk_int[0],
+                                self.opdruk_int[3], self.opdruk_int[1],
+                                self.opdruk_int[2])
+
     def to_int(self):
         try:
             self.opdruk_int = tuple(getattr(self, soort) for soort in self.opdruk)
@@ -62,3 +71,4 @@ if __name__ == '__main__':
     print(tegel.rotate(4))
     a = set4()
     print(a)
+    print(tegel.blockstr())
