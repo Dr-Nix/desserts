@@ -20,12 +20,13 @@ class Oplosser:
                 self.veld.add_tegel(tegel.rotate(i))
                 if self.veld.check_laatste():
                     if len(self.tegelzak) == 1:
-                        print('valid:')
-                        print(self.veld)
+                        # print('valid:')
+                        # print(self.veld)
+                        yield(self.veld)
                     nieuwe_zak = copy.copy(self.tegelzak)
                     nieuwe_zak.remove(tegel)
                     suboplosser = Oplosser(self.veld, nieuwe_zak)
-                    suboplosser.los_op()
+                    yield from suboplosser.los_op()
                 else:
                     pass
                     # print('invalid:')
@@ -37,4 +38,18 @@ if __name__ == '__main__':
     tegelzak = tegels.set4(shuffle=True, seed=1)
     veld = speelveld.Speelveld(2, 2)
     op = Oplosser(veld, tegelzak)
-    op.los_op()
+    oplossingen = []
+    for v in op.los_op():
+        # print('heb er een:')
+        # print(v)
+        if any([v.is_rotatie_van(eerdere) for eerdere in oplossingen]):
+            pass
+            # print('helaas een rotatie.')
+        else:
+            print('nieuwe originele oplossing:')
+            print(v)
+            oplossingen.append(copy.deepcopy(v))
+
+    print('en nu allemaal:')
+    for v in oplossingen:
+        print(v)
