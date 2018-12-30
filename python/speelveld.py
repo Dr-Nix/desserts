@@ -26,8 +26,27 @@ class Speelveld:
     def del_tegel(self):
         self.tegels.pop()
 
-    def set_connections(self):
-        pass
+    def roteer(self):
+        if len(self.tegels) != self.rows * self.cols:
+            NameError('kan alleen roteren met vol veld')
+            return
+
+        # make list of lists:
+        tegel_ll = [[n for n in self.tegels[self.cols * m:self.cols * (m + 1)]] for m in range(self.rows)]
+
+        # roteer
+        tegel_rot = [list(l) for l in list(zip(*tegel_ll))[::-1]]
+
+        # platslaan
+        self.tegels = [item for sublist in tegel_rot for item in sublist]
+
+        # roteer elke tegel zelf
+        self.tegels = [tegel.rotate(1) for tegel in self.tegels]
+        self.rows, self.cols = self.cols, self.rows
+
+    def roteerN(self, N):
+        for i in range(N % 4):
+            self.roteer()
 
     def check_laatste(self):
         curtegel = len(self.tegels) - 1
@@ -65,12 +84,24 @@ class Speelveld:
 if __name__ == '__main__':
     veld = Speelveld(2, 2)
     veld2 = Speelveld(2, 2)
-    for T in tegels.set4(shuffle=True, seed=1):
+    veld3 = Speelveld(2, 2)
+    setje = tegels.set4(shuffle=True, seed=1)
+    for T in setje:
         veld.add_tegel(T)
         # print(veld)
         # veld.check_laatste()
         veld2.add_tegel(T.rotate(0))
+    veld3.add_tegel(setje[1].rotate(1))
+    veld3.add_tegel(setje[3].rotate(1))
+    veld3.add_tegel(setje[0].rotate(1))
+    veld3.add_tegel(setje[2].rotate(1))
     print(veld)
     print('------')
     print(veld2)
     print('veld == veld2:' + str(veld == veld2))
+    print('------')
+    print(veld3)
+    print('veld == veld3:' + str(veld == veld3))
+    veld.roteer()
+    print(veld)
+    print('veld == veld3:' + str(veld == veld3))
