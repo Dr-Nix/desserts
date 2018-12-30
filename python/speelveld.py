@@ -43,10 +43,14 @@ class Speelveld:
         # roteer elke tegel zelf
         self.tegels = [tegel.rotate(1) for tegel in self.tegels]
         self.rows, self.cols = self.cols, self.rows
+        return(self)
 
     def roteerN(self, N):
         for i in range(N % 4):
             self.roteer()
+
+    def is_rotatie_van(self, andere):
+        return(any([self == andere.roteer() for i in range(4)]))
 
     def check_laatste(self):
         curtegel = len(self.tegels) - 1
@@ -85,6 +89,7 @@ if __name__ == '__main__':
     veld = Speelveld(2, 2)
     veld2 = Speelveld(2, 2)
     veld3 = Speelveld(2, 2)
+    veld4 = Speelveld(2, 2)
     setje = tegels.set4(shuffle=True, seed=1)
     for T in setje:
         veld.add_tegel(T)
@@ -95,6 +100,10 @@ if __name__ == '__main__':
     veld3.add_tegel(setje[3].rotate(1))
     veld3.add_tegel(setje[0].rotate(1))
     veld3.add_tegel(setje[2].rotate(1))
+    veld4.add_tegel(setje[0])
+    veld4.add_tegel(setje[0])
+    veld4.add_tegel(setje[1])
+    veld4.add_tegel(setje[2])
     print(veld)
     print('------')
     print(veld2)
@@ -103,5 +112,12 @@ if __name__ == '__main__':
     print(veld3)
     print('veld == veld3:' + str(veld == veld3))
     veld.roteer()
-    print(veld)
+    print('veld geroteerd:\n' + str(veld))
+    veld.roteerN(3)
     print('veld == veld3:' + str(veld == veld3))
+    print('veld is rotatie veld2:' + str(veld.is_rotatie_van(veld2)))
+    print('veld is rotatie veld4:' + str(veld.is_rotatie_van(veld4)))
+    print('veld:\n' + str(veld))
+    print('veld2:\n' + str(veld2))
+    print('veld4:\n' + str(veld4))
+
