@@ -33,22 +33,26 @@ class Oplosser:
                     # print(self.veld)
                 self.veld.del_tegel()
 
+    def run(self):
+        oplossingen = []
+        for v in self.los_op():
+            # print('heb er een:')
+            # print(v)
+            if any([v.is_rotatie_van(eerdere) for eerdere in oplossingen]):
+                pass
+                # print('helaas een rotatie.')
+            else:
+                print('nieuwe originele oplossing:')
+                print(v)
+                oplossingen.append(copy.deepcopy(v))
+        return oplossingen
+
 
 if __name__ == '__main__':
     tegelzak = tegels.set4(shuffle=True, seed=1)
     veld = speelveld.Speelveld(2, 2)
     op = Oplosser(veld, tegelzak)
-    oplossingen = []
-    for v in op.los_op():
-        # print('heb er een:')
-        # print(v)
-        if any([v.is_rotatie_van(eerdere) for eerdere in oplossingen]):
-            pass
-            # print('helaas een rotatie.')
-        else:
-            print('nieuwe originele oplossing:')
-            print(v)
-            oplossingen.append(copy.deepcopy(v))
+    oplossingen = op.run()
 
     print('en nu allemaal:')
     for v in oplossingen:
