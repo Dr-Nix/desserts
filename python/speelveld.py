@@ -3,6 +3,7 @@ Created on Dec 30, 2018
 
 @author: boris
 '''
+import tegels
 
 
 class Speelveld:
@@ -21,6 +22,9 @@ class Speelveld:
         if len(self.tegels) == self.rows * self.cols:
             return NameError('veld vol!')
         self.tegels.append(T)
+
+    def del_tegel(self):
+        self.tegels.pop()
 
     def set_connections(self):
         pass
@@ -52,7 +56,6 @@ class Speelveld:
 
 
 if __name__ == '__main__':
-    import tegels
     veld = Speelveld(2, 2)
     for T in tegels.set4(shuffle=True, seed=1):
         veld.add_tegel(T)
