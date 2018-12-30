@@ -26,6 +26,9 @@ class Tegel:
     def __repr__(self):
         return 'Tegel' + str(self.opdruk)
 
+    def __eq__(self, other):
+        return(self.opdruk_int == other.opdruk_int)
+
     def blockstr(self):
         return ("*---*\n"
                 "| {} |\n"
@@ -76,6 +79,7 @@ def set4(shuffle=False, seed=None):
 
 if __name__ == '__main__':
     tegel = Tegel(('muffin', 'soesje', 'softijs', 'ijsschaal'))
+    tegel2 = Tegel(('muffin', 'soesje', 'softijs', 'ijsschaal'))
     print(tegel.rotate(-1))
     print(tegel.rotate(0))
     print(tegel.rotate(1))
@@ -85,3 +89,5 @@ if __name__ == '__main__':
     a = set4()
     print(a)
     print(tegel.blockstr())
+    print('tegel == tegel2:' + str(tegel == tegel2))
+    print('tegel == tegel2rot:' + str(tegel == tegel2.rotate(1)))

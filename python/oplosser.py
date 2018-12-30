@@ -19,15 +19,17 @@ class Oplosser:
             for i in range(4):
                 self.veld.add_tegel(tegel.rotate(i))
                 if self.veld.check_laatste():
-                    print('valid:')
-                    print(self.veld)
+                    if len(self.tegelzak) == 1:
+                        print('valid:')
+                        print(self.veld)
                     nieuwe_zak = copy.copy(self.tegelzak)
                     nieuwe_zak.remove(tegel)
                     suboplosser = Oplosser(self.veld, nieuwe_zak)
                     suboplosser.los_op()
                 else:
-                    print('invalid:')
-                    print(self.veld)
+                    pass
+                    # print('invalid:')
+                    # print(self.veld)
                 self.veld.del_tegel()
 
 

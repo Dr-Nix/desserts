@@ -54,11 +54,23 @@ class Speelveld:
             s.append(tegels.horcat(self.tegels[row * self.cols : (row + 1) * self.cols]))
         return '\n'.join(s)
 
+    def __eq__(self, other):
+        if self.rows != other.rows:
+            return False
+        if self.cols != other.cols:
+            return False
+        return(self.tegels == other.tegels)
+
 
 if __name__ == '__main__':
     veld = Speelveld(2, 2)
+    veld2 = Speelveld(2, 2)
     for T in tegels.set4(shuffle=True, seed=1):
         veld.add_tegel(T)
         # print(veld)
-        veld.check_laatste()
+        # veld.check_laatste()
+        veld2.add_tegel(T.rotate(0))
     print(veld)
+    print('------')
+    print(veld2)
+    print('veld == veld2:' + str(veld == veld2))
