@@ -63,18 +63,20 @@ def standaardSet():
     return [Tegel(t.split()) for t in lijst]
 
 
-def set4(shuffle=False, seed=None):
+def set4():
     lijst = ('muffin taart softijs ijsschaal',
              'softijs ijsschaal muffin taart',
              'softijs ijsschaal muffin soesje',
              'muffin softijs rode_coupe ijsschaal')
-    tegels = [Tegel(t.split()) for t in lijst]
-    if shuffle and (seed is not None):
+    return [Tegel(t.split()) for t in lijst]
+
+
+def tegel_shuffle(tegels, seed=None):
+    if seed is not None:
         random.seed(seed)
-    if shuffle:
-        random.shuffle(tegels)
-        tegels = [t.rotate(random.randint(0, 3)) for t in tegels]
-    return tegels
+    random.shuffle(tegels)
+    ts = [t.rotate(random.randint(0, 3)) for t in tegels]
+    return ts
 
 
 if __name__ == '__main__':

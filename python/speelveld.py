@@ -90,7 +90,8 @@ if __name__ == '__main__':
     veld2 = Speelveld(2, 2)
     veld3 = Speelveld(2, 2)
     veld4 = Speelveld(2, 2)
-    setje = tegels.set4(shuffle=True, seed=1)
+    setje = tegels.set4()
+    setje = tegels.tegel_shuffle(setje, seed=1)
     for T in setje:
         veld.add_tegel(T)
         # print(veld)
