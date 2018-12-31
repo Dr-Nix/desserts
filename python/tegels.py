@@ -16,9 +16,14 @@ class Tegel:
     soesje = 7
     muffin = 8
 
-    def __init__(self, opdruk):
-        self.opdruk = opdruk
-        self.to_int()
+    def __init__(self, opdr):
+        if type(opdr[0]) == str:
+            self.opdruk = opdr
+            self.to_int()
+        elif type(opdr[0]) == int:
+            self.opdruk_int = opdr
+        else:
+            NameError('verkeerde opdruk!' + str(opdr))
 
     def __str__(self):
         return 'Tegel' + str(self.opdruk) + ' ' + str(self.opdruk_int)
@@ -46,7 +51,7 @@ class Tegel:
 
     def rotate(self, turns):
         turns = turns % 4
-        new_opdruk = self.opdruk[turns:] + self.opdruk[:turns]
+        new_opdruk = self.opdruk_int[turns:] + self.opdruk_int[:turns]
         return Tegel(new_opdruk)
 
 
@@ -57,9 +62,22 @@ def horcat(tegs):
 
 
 def standaardSet():
-    lijst = ('muffin soesje softijs ijsschaal',
-             'muffin taart softijs ijsschaal',
-             'softijs ijsschaal muffin taart')
+    lijst = ('muffin taart softijs ijsschaal',
+             'softijs ijsschaal muffin taart',
+             'softijs taart ijsschaal ijsschaal',
+             'softijs rode_coupe hoorntje taart',
+             'softijs ijsschaal muffin soesje',
+             'muffin softijs rode_coupe ijsschaal',
+             'ijsschaal softijs taart softijs',
+             'hoorntje softijs ijsschaal softijs',
+             'muffin hoorntje coupe muffin',
+             'rode_coupe taart taart hoorntje',
+             'taart ijsschaal softijs taart',
+             'ijsschaal muffin softijs ijsschaal',
+             'muffin soesje softijs ijsschaal',
+             'coupe rode_coupe soesje soesje',
+             'taart ijsschaal softijs rode_coupe',
+             'softijs taart taart ijsschaal')
     return [Tegel(t.split()) for t in lijst]
 
 
@@ -93,3 +111,7 @@ if __name__ == '__main__':
     print(tegel.blockstr())
     print('tegel == tegel2:' + str(tegel == tegel2))
     print('tegel == tegel2rot:' + str(tegel == tegel2.rotate(1)))
+    b = standaardSet()
+    for t in b:
+        print(t)
+    print('len b: ' + str(len(b)))
