@@ -5,7 +5,7 @@
  *      Author: boris
  */
 
-#include "Veld.h"
+#include "veld.h"
 
 Veld::Veld(const int rows, const int cols)
         : d_rows(rows), d_cols(cols), d_filled(0)

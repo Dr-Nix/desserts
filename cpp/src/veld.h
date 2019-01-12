@@ -10,7 +10,8 @@
 
 #include <iostream>
 #include <vector>
-#include "Tegel.h"
+
+#include "tegel.h"
 
 class Veld
 {

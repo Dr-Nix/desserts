@@ -5,7 +5,7 @@
  *      Author: boris
  */
 
-#include "Tegel.h"
+#include "tegel.h"
 
 Tegel::Tegel(int top, int right, int bottom, int left)
         : d_rotation(0)

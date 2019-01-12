@@ -9,7 +9,7 @@
 //#include <iostream>
 //#include <string>
 
-#include "Veld.h"
+#include "veld.h"
 
 int main() {
     Tegel t1 = Tegel(1, 2, 3, 4);
