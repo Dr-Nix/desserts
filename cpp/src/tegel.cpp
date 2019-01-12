@@ -7,7 +7,7 @@
 
 #include "tegel.h"
 
-Tegel::Tegel(int top, int right, int bottom, int left)
+Tegel::Tegel(dessert top, dessert right, dessert bottom, dessert left)
         : d_rotation(0)
 {
     d_opdruk[0] = top;
@@ -21,25 +21,25 @@ Tegel::~Tegel()
     // TODO Auto-generated destructor stub
 }
 
-int
+Tegel::dessert
 Tegel::get_top()
 {
     return d_opdruk[d_rotation];
 }
 
-int
+Tegel::dessert
 Tegel::get_right()
 {
     return d_opdruk[(1 + d_rotation) % 4];
 }
 
-int
+Tegel::dessert
 Tegel::get_bottom()
 {
     return d_opdruk[(2 + d_rotation) % 4];
 }
 
-int
+Tegel::dessert
 Tegel::get_left()
 {
     return d_opdruk[(3 + d_rotation) % 4];

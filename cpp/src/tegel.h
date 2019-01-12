@@ -11,18 +11,30 @@
 class Tegel
 {
     public:
-        Tegel(int top, int right, int bottom, int left);
+        enum class dessert
+        {
+            taart = 1,
+            softijs = 2,
+            coupe = 3,
+            rode_coupe = 4,
+            hoorntje = 5,
+            ijsschaal = 6,
+            soesje = 7,
+            muffin = 8
+        };
+
+        Tegel(dessert top, dessert right, dessert bottom, dessert left);
         virtual ~Tegel();
-        int get_top();
-        int get_right();
-        int get_bottom();
-        int get_left();
+        dessert get_top();
+        dessert get_right();
+        dessert get_bottom();
+        dessert get_left();
 
         int get_rotation();
         void set_rotation(const int rot);
 
     private:
-        int d_opdruk[4];
+        dessert d_opdruk[4];
         int d_rotation;
 };
 

@@ -10,12 +10,17 @@
 //#include <string>
 
 #include "veld.h"
+#include "tegel.h"
 
 int main() {
-    Tegel t1 = Tegel(1, 2, 3, 4);
-    Tegel t2 = Tegel(0, 2, 4, 6);
-    Tegel t3 = Tegel(5, 6, 7, 8);
-    Tegel t4 = Tegel(9, 0, 0, 9);
+    Tegel t1 = Tegel(Tegel::dessert::hoorntje,
+                     Tegel::dessert::ijsschaal,
+                     Tegel::dessert::soesje,
+                     Tegel::dessert::taart);
+    using D = Tegel::dessert;
+    Tegel t2 = Tegel(D::hoorntje, D::soesje, D::taart, D::muffin);
+    Tegel t3 = Tegel(D::coupe, D::rode_coupe, D::soesje, D::muffin);
+    Tegel t4 = Tegel(D::rode_coupe, D::ijsschaal, D::coupe, D::softijs);
     Veld v = Veld(2, 2);
 
     v.add_tegel(&t1);
