@@ -8,6 +8,9 @@
 #ifndef TEGEL_H_
 #define TEGEL_H_
 
+#include <string>
+#include <vector>
+
 class Tegel
 {
     public:
@@ -24,11 +27,12 @@ class Tegel
         };
 
         Tegel(dessert top, dessert right, dessert bottom, dessert left);
-        virtual ~Tegel();
         dessert get_top();
         dessert get_right();
         dessert get_bottom();
         dessert get_left();
+        std::vector<std::string> print_regels();
+        void print();
 
         int get_rotation();
         void set_rotation(const int rot);
