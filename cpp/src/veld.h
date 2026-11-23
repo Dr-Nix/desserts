@@ -10,7 +10,7 @@
 
 #include <iostream>
 #include <vector>
-
+#include <memory>
 #include "tegel.h"
 
 class Veld
@@ -19,13 +19,13 @@ class Veld
         Veld(const int rows, const int cols);
         virtual ~Veld();
         Tegel * get_tegel(int row, int col);
-        int add_tegel(Tegel *t);
+        int add_tegel(std::unique_ptr<Tegel> t);
         void print();
 
     private:
         int d_rows;
         int d_cols;
-        std::vector<std::vector<Tegel *>> d_tegels;
+        std::vector<std::vector<std::unique_ptr<Tegel>>> d_tegels;
         int d_filled;
 };
 

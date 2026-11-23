@@ -12,7 +12,12 @@ Veld::Veld(const int rows, const int cols)
 {
     for (int r = 0; r < rows; r++)
     {
-        d_tegels.push_back(std::vector<Tegel*>(cols, nullptr));
+
+        for (int c = 0; c < cols; c++)
+        {
+        .push_back(std::vector<std::unique_ptr<Tegel>>(cols, std::make_unique(nullptr)));
+    }
+    d_tegels
     }
 
 }
@@ -36,7 +41,7 @@ Veld::get_tegel(int row, int col)
 }
 
 int
-Veld::add_tegel(Tegel * t)
+Veld::add_tegel(std::unique_ptr<Tegel> t)
 {
     if (d_filled == d_rows * d_cols)
     {
